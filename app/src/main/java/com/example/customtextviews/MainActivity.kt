@@ -6,6 +6,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
+import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -26,17 +27,22 @@ class MainActivity : AppCompatActivity() {
         this.foregroundSpannable.text = colorSpannableString
         this.addTextToSpan.setOnClickListener {
             try{
-                val insertBlueIndex = colorSpannableString.indexOf("Lo siento") + ("Lo siento".length/2 + 1)
-                val insertGreenIndex = colorSpannableString.indexOf("no soy") + ("no soy".length/2 + 1)
-                val insertYellowIndex = colorSpannableString.indexOf("diseñador") + ("Lo siento".length/2 + 1)
-                colorSpannableString.insert(insertBlueIndex, "A")
-                colorSpannableString.insert(insertGreenIndex, "B")
-                colorSpannableString.insert(insertYellowIndex, "C")
+
+                colorSpannableString.insert(0, "A")
+                val insertGreenIndex = colorSpannableString.indexOf("Lo siento") + "Lo siento".length
+                colorSpannableString.insert(insertGreenIndex, "A")
+                val insertStartBlueIndex = colorSpannableString.indexOf("no soy")
+                colorSpannableString.insert(insertStartBlueIndex, "B")
+                val insertEndBlueIndex = colorSpannableString.indexOf("no soy") + "no soy".length
+                colorSpannableString.insert(insertEndBlueIndex, "B")
+                val insertStartYellowIndex = colorSpannableString.indexOf("diseñador")
+                colorSpannableString.insert(insertStartYellowIndex, "C")
+                val insertEndtYellowIndex = colorSpannableString.indexOf("diseñador") + "diseñador".length
+                colorSpannableString.insert(insertEndtYellowIndex, "C")
                 this.foregroundSpannable.text = colorSpannableString
             } catch (error: Exception){
                 Log.e("ERROR_SPANNED", "Error al insertar", error)
             }
-
         }
     }
 
@@ -48,8 +54,8 @@ class MainActivity : AppCompatActivity() {
         val endGreenIndex = startGreenIndex + 9 // largo de la cadena "Lo siento"
         val startBlueIndex = text.indexOf("no")
         val endBlueIndex = startBlueIndex + 6 // largo de la cadena "no soy"
-        val startBrownIndex = text.indexOf("diseñador")
-        val endBrownIndex = startBrownIndex + "diseñador".length
+        val startYellowIndex = text.indexOf("diseñador")
+        val endYellowIndex = startYellowIndex + "diseñador".length
         spannableString.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue)),
             startBlueIndex,
@@ -62,11 +68,12 @@ class MainActivity : AppCompatActivity() {
             Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         spannableString.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.brown)),
-            startBrownIndex,
-            endBrownIndex,
+            startYellowIndex,
+            endYellowIndex,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         return spannableString
     }
+
     companion object{
         const val HTML_STRING = "<h1>Hola</h1><p>Esto es <b>HTML</b></p>"
     }

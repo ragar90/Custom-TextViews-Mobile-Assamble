@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
       <Button
+        style="@style/AppTheme.TextViews"
         android:id="@+id/addTextToSpan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
