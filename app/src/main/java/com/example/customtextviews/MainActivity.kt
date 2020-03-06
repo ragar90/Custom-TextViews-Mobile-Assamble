@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         this.htmlParagraphRes.movementMethod = LinkMovementMethod.getInstance()
         colorSpannableString = getSpannableForColorTexts()
         this.foregroundSpannable.text = colorSpannableString
+        this.backgroundSpannable.text = getSpannableForBackground()
         this.addTextToSpan.setOnClickListener {
             try{
 
@@ -71,6 +72,48 @@ class MainActivity : AppCompatActivity() {
             startYellowIndex,
             endYellowIndex,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        return spannableString
+    }
+
+    private fun getSpannableForBackground(): SpannableString {
+        val text = this.getString(R.string.color_texts)
+        val spannableString = SpannableString(text)
+        val startGreenIndex = 0
+        val endGreenIndex = startGreenIndex + 9 // largo de la cadena "Lo siento"
+        val startRedIndex = text.indexOf("no")
+        val endRedIndex = startRedIndex + 6 // largo de la cadena "no soy"
+        val startYellowIndex = text.indexOf("diseñador")
+        val endYellowIndex = startYellowIndex + "diseñador".length
+        spannableString.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+            startRedIndex,
+            endRedIndex,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            BackgroundColorSpan(ContextCompat.getColor(this, R.color.black)),
+            startRedIndex,
+            endRedIndex,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.green)),
+            startGreenIndex,
+            endGreenIndex,
+            Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+        spannableString.setSpan(
+            BackgroundColorSpan(ContextCompat.getColor(this, R.color.black)),
+            startGreenIndex,
+            endGreenIndex,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.brown)),
+            startYellowIndex,
+            endYellowIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            BackgroundColorSpan(ContextCompat.getColor(this, R.color.black)),
+            startYellowIndex,
+            endYellowIndex,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         return spannableString
     }
 
