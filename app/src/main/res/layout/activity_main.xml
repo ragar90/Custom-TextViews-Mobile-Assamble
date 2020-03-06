@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorAccent"
+  android:orientation="vertical"
+  android:paddingHorizontal="30dp"
+  android:paddingVertical="30dp"
+  tools:context=".MainActivity">
+
+  <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:paddingHorizontal="30dp"
-    android:paddingVertical="30dp">
+    android:layout_height="wrap_content">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/htmlParagraph"
+        style="@style/AppTheme.TextViews"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                style="@style/AppTheme.TextViews"
-                android:id="@+id/htmlParagraph"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-              style="@style/AppTheme.TextViews"
-              android:id="@+id/htmlParagraphRes"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
-        </LinearLayout>
+      <TextView
+        android:id="@+id/htmlParagraphRes"
+        style="@style/AppTheme.TextViews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    </androidx.core.widget.NestedScrollView>
+      <TextView
+        android:id="@+id/foregroundSpannable"
+        style="@style/AppTheme.TextViews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+      <Button
+        android:id="@+id/addTextToSpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar mas texto"/>
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

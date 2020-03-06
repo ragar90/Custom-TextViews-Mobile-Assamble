@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CustomTextViews</string>
     <string name="html_content"><Data><![CDATA[ <h1>Hola</h1><p>Esto Tambien es <a href = "https://en.wikipedia.org/wiki/HTML">HTML</a> pero cargado desde <b>STRING RESOURCES</b></p>]]> </Data></string>
+    <string name="color_texts">Lo siento-ESTO NO TIENE COLOR-no soy-ESTO NO TIENE COLOR-diseñador</string>
 </resources>
