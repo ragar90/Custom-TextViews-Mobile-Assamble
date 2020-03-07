@@ -3,4 +3,9 @@
     <string name="html_content"><Data><![CDATA[ <h1>Hola</h1><p>Esto Tambien es <a href = "https://en.wikipedia.org/wiki/HTML">HTML</a> pero cargado desde <b>STRING RESOURCES</b></p>]]> </Data></string>
     <string name="color_texts">Lo siento-ESTO NO TIENE COLOR-no soy-ESTO NO TIENE COLOR-diseñador</string>
     <string name="typeface_text">Yo invoco a EXODIA EL TEMIBLE!!!</string>
+    <string name="text_view_5">Otro TextView con fuente diferente fondo con bordes redondados</string>
+    <string name="textview_1">Un TextView</string>
+    <string name="textview_2">Otro TextView con background</string>
+    <string name="textview_3">Otro TextView en rojo y negritas</string>
+    <string name="textview_4">Otro TextView con fuente diferente</string>
 </resources>
