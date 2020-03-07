@@ -10,7 +10,7 @@
 
     <style name="AppTheme.TextViews">
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
 </resources>

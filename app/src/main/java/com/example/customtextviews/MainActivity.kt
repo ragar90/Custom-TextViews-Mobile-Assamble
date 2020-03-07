@@ -1,5 +1,7 @@
 package com.example.customtextviews
 
+import android.graphics.Typeface
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
@@ -8,10 +10,13 @@ import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import org.givesafe.app.Activities.CommonUI.CustomTypefaceSpan
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         colorSpannableString = getSpannableForColorTexts()
         this.foregroundSpannable.text = colorSpannableString
         this.backgroundSpannable.text = getSpannableForBackground()
+        this.typefaceSpannable.text = getTypefaceSpannable()
         this.addTextToSpan.setOnClickListener {
             try{
 
@@ -115,6 +121,31 @@ class MainActivity : AppCompatActivity() {
             endYellowIndex,
             Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         return spannableString
+    }
+
+    private fun getTypefaceSpannable(): SpannableString{
+        val higlightText = "EXODIA EL TEMIBLE!!!"
+        val text = this.getString(R.string.typeface_text)
+        val spanned = SpannableString(text)
+        val startExodiaIndex = text.indexOf(higlightText)
+        val endExodiaIndex = text.length -1
+        val startNomalIndex = 0
+        val endNormalIndex = startExodiaIndex -1
+        val normalTypeFace = ResourcesCompat.getFont(this, R.font.caladea_bold_italic)
+        val exodiaTypeface = ResourcesCompat.getFont(this, R.font.trade_winds_regular)
+        val normalSpanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            TypefaceSpan(normalTypeFace!!)
+        } else {
+            CustomTypefaceSpan(normalTypeFace)
+        }
+        val exodiaSpanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            TypefaceSpan(exodiaTypeface!!)
+        } else {
+            CustomTypefaceSpan(exodiaTypeface)
+        }
+        spanned.setSpan(normalSpanned, startNomalIndex, endNormalIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spanned.setSpan(exodiaSpanned, startExodiaIndex, endExodiaIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        return spanned
     }
 
     companion object{
