@@ -1,5 +1,6 @@
 package com.example.customtextviews
 
+import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +8,15 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.BackgroundColorSpan
+import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
 import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.HtmlCompat
@@ -22,6 +27,22 @@ import java.lang.Exception
 class MainActivity : AppCompatActivity() {
 
     lateinit var colorSpannableString: SpannableStringBuilder
+    private var clickableSpan = object : ClickableSpan(){
+        override fun onClick(widget: View) {
+            AlertDialog.Builder(getContext())
+                .setMessage("Este yugi y sus trampas...")
+                .setNeutralButton("Me quejare con el referi", null)
+                .show()
+        }
+
+        override fun updateDrawState(ds: TextPaint){
+            ds.isUnderlineText = false
+        }
+    }
+
+    fun getContext(): Context {
+        return this
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         this.foregroundSpannable.text = colorSpannableString
         this.backgroundSpannable.text = getSpannableForBackground()
         this.typefaceSpannable.text = getTypefaceSpannable()
+        this.typefaceSpannable.movementMethod = LinkMovementMethod.getInstance()
         this.addTextToSpan.setOnClickListener {
             try{
 
@@ -143,8 +165,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             CustomTypefaceSpan(exodiaTypeface)
         }
+        
         spanned.setSpan(normalSpanned, startNomalIndex, endNormalIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spanned.setSpan(exodiaSpanned, startExodiaIndex, endExodiaIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spanned.setSpan(clickableSpan, startExodiaIndex, endExodiaIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         return spanned
     }
 
